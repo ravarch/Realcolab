@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "rag-db",
-      "database_id": "YOUR_D1_DATABASE_ID"
+      "database_id": "117a5998-ff0d-4713-af72-77966fac53c6"
     }
   ],
   "vectorize": [
