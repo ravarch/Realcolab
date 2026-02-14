@@ -1,22 +1,24 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "rag",
+  "name": "ai-research",
   "main": "src/index.ts",
   "compatibility_date": "2024-09-23",
+  "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
   },
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "rag-db",
-      "database_id": "117a5998-ff0d-4713-af72-77966fac53c6"
+      "database_name": "agent-db",
+      "database_id": "117a5998-ff0d-4713-af72-77966fac53c6",
+      "migrations_dir": "d1_migrations"
     }
   ],
   "vectorize": [
     {
       "binding": "VECTORIZE",
-      "index_name": "rag-index"
+      "index_name": "agent-memory"
     }
   ],
   "ai": {
@@ -24,9 +26,9 @@
   },
   "workflows": [
     {
-      "name": "rag-workflow",
+      "name": "agent-workflow",
       "binding": "MY_WORKFLOW",
-      "class_name": "RAGWorkflow"
+      "class_name": "AgentWorkflow"
     }
   ]
 }
