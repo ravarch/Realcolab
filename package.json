@@ -9,6 +9,7 @@
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {
+	"@langchain/core": "^1.1.24",
     "@langchain/textsplitters": "^1.0.1",
     "nanoid": "^5.1.6"
   },
