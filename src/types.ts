@@ -5,12 +5,44 @@ export interface Env {
   MY_WORKFLOW: Workflow;
 }
 
-export type RAGParams = 
-  | { operation: 'ingest'; id: string; content: string; sourceUrl?: string; metadata?: Record<string,any> }
-  | { operation: 'query'; query: string; topK?: number };
+// --- Workflow Event Payloads ---
 
-export interface RAGResult {
-  answer?: string;
-  sources?: Array<{ id: string; score: number; content: string }>;
-  stats?: { processedDocs?: number };
+export type IngestEvent = {
+  type: 'ingest';
+  payload: {
+    content: string;
+    sourceUrl?: string;
+    metadata?: Record<string, unknown>;
+  };
+};
+
+export type AgentEvent = {
+  type: 'research';
+  payload: {
+    query: string;
+    depth?: 'shallow' | 'deep';
+  };
+};
+
+export type WorkflowParams = IngestEvent | AgentEvent;
+
+// --- Internal Data Structures ---
+
+export interface DocumentChunk {
+  id: string;
+  docId: string;
+  content: string;
+  index: number;
+}
+
+export interface AgentPlan {
+  subQueries: string[];
+  thoughtProcess: string;
+}
+
+export interface SearchResult {
+  id: string;
+  content: string;
+  score: number;
+  sourceUrl: string | null;
 }
